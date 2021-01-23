@@ -1,0 +1,18 @@
+<p><%= link_to  'Voltar', root_path %></p>
+
+<p><%= link_to 'Adicionar Promocao', new_promotion_path %></p>
+
+<% if @promotions.empty? %> 
+  <p>Nenhuma promoção cadastrada</p>  
+<% end %>
+
+<% @promotions.each do |promotion|%>
+
+  <p><%= link_to promotion.name, promotion %></p>
+  <p><%= promotion.description %></p>
+  <p><%= promotion.code %></p>
+  <p><%= number_to_percentage promotion.discount_rate, precision: 2, separator: ',' %></p>
+  <p><%= promotion.coupon_quantity %></p>
+  <p><%= promotion.expiration_date.strftime('%d/%m/%Y') %></p>
+
+<% end %>
