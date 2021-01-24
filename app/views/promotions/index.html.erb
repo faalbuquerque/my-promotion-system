@@ -1,18 +1,19 @@
 <p><%= link_to  'Voltar', root_path %></p>
 
-<p><%= link_to 'Adicionar Promocao', new_promotion_path %></p>
+<h2><%= link_to 'Registrar uma promoção', new_promotion_path %></h2>
 
 <% if @promotions.empty? %> 
   <p>Nenhuma promoção cadastrada</p>  
 <% end %>
 
+<hr>
 <% @promotions.each do |promotion|%>
-
-  <p><%= link_to promotion.name, promotion %></p>
-  <p><%= promotion.description %></p>
-  <p><%= promotion.code %></p>
-  <p><%= number_to_percentage promotion.discount_rate, precision: 2, separator: ',' %></p>
-  <p><%= promotion.coupon_quantity %></p>
-  <p><%= promotion.expiration_date.strftime('%d/%m/%Y') %></p>
-
+  <h3>Promoção: <%= link_to promotion.name, promotion %></h3>
+  <p>Descrição: <%= promotion.description %></p>
+  <p>Código: <%= promotion.code %></p>
+  <p>Desconto: <%= number_to_percentage promotion.discount_rate, precision: 2, separator: ',' %></p>
+  <p>Quantidade de cupons: <%= promotion.coupon_quantity %></p>
+  <p>Data de expiração: <%= promotion.expiration_date.strftime('%d/%m/%Y') %></p>
+  <hr>
 <% end %>
+
