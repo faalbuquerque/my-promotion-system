@@ -1,5 +1,5 @@
 ## Projeto TreinaDev 05 - Primeira Etapa
-<hr>
+
 Desenvolvimento de um sistema em Ruby on Rails como parte do treinamento da Campus Code.  
 <hr>
 
