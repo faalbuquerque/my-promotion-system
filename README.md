@@ -1,24 +1,12 @@
-# README
+## Projeto TreinaDev 05 - Primeira Etapa
+<hr>
+Desenvolvimento de um sistema em Ruby on Rails como parte do treinamento da Campus Code.  
+<hr>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Tecnologias:
+- Ruby
+- Rails
+- RSpec
+- I18n
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### [Link: Trello](https://trello.com/b/68Dthg1c/treinadev-atividades)
