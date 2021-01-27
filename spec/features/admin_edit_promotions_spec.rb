@@ -43,7 +43,7 @@ feature 'Admin edit promotions' do
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL50', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033')
-    Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+    Promotion.create!(name: 'Natal2', description: 'Promoção de Natal',
                       code: 'NATAL59', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033')
 

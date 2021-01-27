@@ -33,5 +33,19 @@ feature 'Admin registers a valid promotion' do
 
     expect(page).to have_content('deve ser único')
   end
+
+  scenario 'and name must be unique' do
+    Promotion.create!(name: 'Natal1', description: 'Promoção',
+                      code: 'NATAL', discount_rate: 11, coupon_quantity: 101,
+                      expiration_date: '22/12/2033')
+
+    visit root_path
+    click_on 'Promoções'
+    click_on 'Registrar uma promoção'
+    fill_in 'Nome', with: 'Natal1'
+    click_on 'Criar promoção'
+
+    expect(page).to have_content('deve ser único')
+  end
 end
 
