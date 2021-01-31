@@ -13,7 +13,7 @@
   <p>Código: <%= promotion.code %></p>
   <p>Desconto: <%= number_to_percentage promotion.discount_rate, precision: 2, separator: ',' %></p>
   <p>Quantidade de cupons: <%= promotion.coupon_quantity %></p>
-  <p>Data de expiração: <%= promotion.expiration_date.strftime('%d/%m/%Y') %></p>
+  <p>Data de expiração: <%= I18n.localize(promotion.expiration_date) %></p>
 
   <p>
     <%= link_to 'Editar promoção', edit_promotion_path(promotion) %> | 
@@ -22,3 +22,5 @@
 
   <hr>
 <% end %>
+
+ 
