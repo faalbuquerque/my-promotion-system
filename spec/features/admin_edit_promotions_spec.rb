@@ -51,6 +51,6 @@ feature 'Admin edit promotions' do
     fill_in 'Código', with: 'NATAL50'
     click_on 'Atualizar promoção'
 
-    expect(page).to have_content('deve ser único')
+    expect(page).to have_content('já está em uso')
   end
 end

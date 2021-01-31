@@ -40,7 +40,7 @@ describe Promotion do
 
       promotion.valid?
 
-      expect(promotion.errors[:code]).to include('deve ser único')
+      expect(promotion.errors[:code]).to include('já está em uso')
     end
   end
 end
