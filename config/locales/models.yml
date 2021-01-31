@@ -12,3 +12,4 @@ pt-BR:
         coupon_quantity: "Quantidade de cupons"
         expiration_date: "Data de término"
         description: "Descrição"
+  promotion_error_message: "Não foi possível criar a promoção!"
