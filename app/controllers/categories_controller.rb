@@ -20,6 +20,16 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
+  def edit
+    @category = Category.find(params[:id])
+  end
+
+  def update
+    @category = Category.find(params[:id])
+    return redirect_to @category if @category.update(category_params)
+
+    render :edit
+  end
 
   private
 

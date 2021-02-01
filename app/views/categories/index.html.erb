@@ -6,5 +6,7 @@
 <% @categories.each do |category|%>
   <h3>Nome: <%= link_to category.name, category %></h3>
   <p>Código: <%= category.code %></p>
+
+  <p><%= link_to 'Editar categoria', edit_category_path(category) %></p>
   <hr>
 <% end %>

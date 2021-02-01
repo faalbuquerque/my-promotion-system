@@ -2,13 +2,13 @@ require 'rails_helper'
 
 feature 'Admin edit categories' do
   scenario 'successfully' do
-    Category.create!(name: 'Comida', code: 'comi100')
+    Category.create!(name: 'Comidinha', code: 'comi100')
     Category.first.update!(name: 'Comida japonesa', code: 'comijapa')
 
     visit root_path
-    click_on 'Promoções'
+    click_on 'Categorias'
 
-    expect(page).to_not have_content('Comida')
+    expect(page).to_not have_content('Comidinha')
     expect(page).to_not have_content('comi100')
     expect(page).to have_content('Comida japonesa')
     expect(page).to have_content('comijapa')
