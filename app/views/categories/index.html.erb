@@ -1,0 +1,10 @@
+<p><%= link_to  'Voltar', root_path %></p>
+
+<h2><%= link_to 'Registrar uma categoria', new_category_path %></h2>
+
+<hr>
+<% @categories.each do |category|%>
+  <h3>Nome: <%= link_to category.name, category %></h3>
+  <p>Código: <%= category.code %></p>
+  <hr>
+<% end %>

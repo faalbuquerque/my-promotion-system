@@ -1,0 +1,21 @@
+<p><%= link_to  'Voltar', categories_path %></p>
+
+<% @category.errors.any? do %>
+  <% @category.errors.full_messages.each do |message| %>
+  <p><%= message %></p>
+  <% end %>
+<% end %>
+
+<%= form_with model: @category, local: true do |form| %>
+  <p>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :code  %>
+    <%= form.text_field :code %>
+  </p>
+
+  <%= form.submit %>
+<% end %>

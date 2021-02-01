@@ -4,6 +4,9 @@ pt-BR:
       promotion: 
         one: promoção
         other: Promoções
+      category: 
+        one: categoria
+        other: Categorias
     attributes:
       promotion:
         name: "Nome"
@@ -12,4 +15,8 @@ pt-BR:
         coupon_quantity: "Quantidade de cupons"
         expiration_date: "Data de término"
         description: "Descrição"
+      category:
+        name: "Nome"
+        code: "Código"
   promotion_error_message: "Não foi possível criar a promoção!"
+
