@@ -31,6 +31,14 @@ class CategoriesController < ApplicationController
     render :edit
   end
 
+  def destroy
+    @category = Category.find(params[:id])
+
+    return redirect_to categories_path if @category.delete
+
+    render :index
+  end
+
   private
 
   def category_params
