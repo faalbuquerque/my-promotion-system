@@ -10,7 +10,6 @@ class CategoriesController < ApplicationController
   
   def create
     @category = Category.new(category_params)
-
     return redirect_to @category if @category.save
 
     render :new

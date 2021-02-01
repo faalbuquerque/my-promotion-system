@@ -16,7 +16,7 @@ feature 'Admin edit categories' do
 
   scenario 'and attributes cannot be blank' do
     Category.create!(name: 'Bebida', code: 'bebi100')
-  
+
     visit root_path
     click_on 'Categorias'
     click_on 'Editar categoria'

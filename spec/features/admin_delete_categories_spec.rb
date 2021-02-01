@@ -10,7 +10,6 @@ feature 'Admin delete categories' do
 
     expect(page).to have_content('Eletronicos')
     expect(page).to have_content('555')
-
     expect(page).to_not have_content('Portateis')
     expect(page).to_not have_content('666')
   end
