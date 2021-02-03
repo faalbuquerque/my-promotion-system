@@ -4,10 +4,24 @@
 <p>Descrição: <%= @promotion.description %></p>
 <p>Código: <%= @promotion.code %></p>
 <p>Desconto: <%= number_to_percentage @promotion.discount_rate, precision: 2, separator: ',' %></p>
-<p>Quantidade de cupons: <%= @promotion.coupon_quantity %></p>
+
+<p>Quantidade de cupons: <%= @promotion.coupon_quantity %> |
+  <%= link_to 'Gerar cupons', creates_coupons_promotion_path, method: :post %>
+</p>
+
 <p>Data de expiração: <%= @promotion.expiration_date.strftime('%d/%m/%Y') %></p>
 
 <p>
   <%= link_to 'Editar promoção', edit_promotion_path(@promotion) %> | 
   <%= link_to 'Apagar promoção', @promotion, method: :delete %>
 </p>
+<hr>
+
+<% if flash[:notice].present? %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<h3>Cupons</h3>
+<% @promotion.coupons.each do |coupon| %>
+  <p><%= coupon.code %></p>
+<% end %>

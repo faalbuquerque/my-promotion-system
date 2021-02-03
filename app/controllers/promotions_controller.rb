@@ -1,5 +1,5 @@
 class PromotionsController < ApplicationController
-  before_action :find_promotion, only: %i[show edit update destroy]
+  before_action :find_promotion, only: %i[show edit update destroy creates_coupons]
 
   def index
     @promotions = Promotion.all
@@ -32,6 +32,15 @@ class PromotionsController < ApplicationController
     return redirect_to promotions_path if @promotion.delete
 
     render :index
+  end
+
+  def creates_coupons
+    1.upto(find_promotion.coupon_quantity) do |num|
+      Coupon.create(code: "#{ @promotion.code }-#{ num.to_s.rjust(4, '0') }", promotion: @promotion)
+    end
+    flash[:notice] = 'Cupons gerados com sucesso!'
+
+    redirect_to @promotion
   end
 
   private
