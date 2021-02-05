@@ -1,5 +1,5 @@
 class PromotionsController < ApplicationController
-  before_action :find_promotion, only: %i[show edit update destroy creates_coupons]
+  before_action :find_promotion, except: %i[index new create]
 
   def index
     @promotions = Promotion.all
@@ -29,7 +29,7 @@ class PromotionsController < ApplicationController
   end
 
   def destroy
-    return redirect_to promotions_path if @promotion.delete
+    return redirect_to promotions_path if @promotion.destroy!
 
     render promotions_path
   end
