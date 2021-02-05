@@ -22,4 +22,5 @@
 <h3>Cupons</h3>
 <% @promotion.coupons.each do |coupon| %>
   <p><%= coupon.code %></p>
+  <%= link_to 'Inativar', inactivate_coupon_path(coupon), method: :post %>
 <% end %>

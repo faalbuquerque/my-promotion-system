@@ -7,4 +7,7 @@ Rails.application.routes.draw do
     post 'creates_coupons', on: :member
   end
 
+  resources :coupons, only: [] do
+    post 'inactivate', on: :member
+  end
 end
