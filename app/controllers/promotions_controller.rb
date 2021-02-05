@@ -31,16 +31,13 @@ class PromotionsController < ApplicationController
   def destroy
     return redirect_to promotions_path if @promotion.delete
 
-    render :index
+    render promotions_path
   end
 
   def creates_coupons
-    1.upto(find_promotion.coupon_quantity) do |num|
-      Coupon.create(code: "#{ @promotion.code }-#{ num.to_s.rjust(4, '0') }", promotion: @promotion)
-    end
-    flash[:notice] = 'Cupons gerados com sucesso!'
+    @promotion.create_coupons!
 
-    redirect_to @promotion
+    redirect_to @promotion, notice: t('.success')
   end
 
   private
