@@ -14,8 +14,5 @@ feature 'Admin inactivate coupons' do
     click_on 'Inativar'
 
     expect(page).to  have_content('AAA-11 (Inativo)')
-    
-  
   end
-
 end
