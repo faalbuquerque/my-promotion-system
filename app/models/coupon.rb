@@ -3,5 +3,5 @@ class Coupon < ApplicationRecord
 
   validates :code, uniqueness: true
 
-  enum status: { action: 0, inactive: 10 }
+  enum status: { active: 0, inactive: 10 }
 end

@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :coupons, only: [] do
     post 'inactivate', on: :member
   end
+
 end
