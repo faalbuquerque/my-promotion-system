@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'Admin edit categories' do
   scenario 'successfully' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+
     Category.create!(name: 'Comidinha', code: 'comi100')
     Category.first.update!(name: 'Comida japonesa', code: 'comijapa')
 
@@ -15,6 +18,9 @@ feature 'Admin edit categories' do
   end
 
   scenario 'and attributes cannot be blank' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+
     Category.create!(name: 'Bebida', code: 'bebi100')
 
     visit root_path
@@ -28,6 +34,9 @@ feature 'Admin edit categories' do
   end
 
   scenario 'and code must be unique' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+    
     Category.create!(name: 'Caes', code: 'caes10')
     Category.create!(name: 'Gatos', code: 'gatos10')
 

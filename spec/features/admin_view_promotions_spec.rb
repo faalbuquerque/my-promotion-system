@@ -2,6 +2,10 @@ require 'rails_helper'
 
 feature 'Admin view promotions' do
   scenario 'successfully' do
+
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033')
@@ -22,6 +26,9 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and view details' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033')
@@ -43,6 +50,9 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and no promotion are created' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+
     visit root_path
     click_on 'Promoções'
 
@@ -50,6 +60,9 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and return to home page' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033')
@@ -62,6 +75,9 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and return to promotions page' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+    
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033')
@@ -72,5 +88,20 @@ feature 'Admin view promotions' do
     click_on 'Voltar'
 
     expect(current_path).to eq promotions_path
+  end
+
+  scenario 'failure, not signed in' do
+
+    Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+                      expiration_date: '22/12/2033')
+
+    visit root_path
+    click_on 'Promoções'
+
+    expect(current_path).to_not eq promotions_path
+    expect(page).to_not have_content('Natal')
+    expect(page).to_not have_content('Promoção de Natal')
+    expect(page).to_not have_content('10,00%')
   end
 end

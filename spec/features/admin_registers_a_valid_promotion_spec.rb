@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'Admin registers a valid promotion' do
   scenario 'and attributes cannot be blank' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+
     visit root_path
     click_on 'Promoções'
     click_on 'Registrar uma promoção'
@@ -23,6 +26,9 @@ feature 'Admin registers a valid promotion' do
   end
 
   scenario 'and code must be unique' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033')
@@ -37,6 +43,9 @@ feature 'Admin registers a valid promotion' do
   end
 
   scenario 'and name must be unique' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+    
     Promotion.create!(name: 'Natal1', description: 'Promoção',
                       code: 'NATAL', discount_rate: 11, coupon_quantity: 101,
                       expiration_date: '22/12/2033')

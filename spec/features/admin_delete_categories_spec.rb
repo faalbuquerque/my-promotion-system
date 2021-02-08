@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'Admin delete categories' do
   scenario 'successfully' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+    
     Category.create!(name: 'Eletronicos', code: '555')
     Category.create!(name: 'Portateis', code: '666')
 

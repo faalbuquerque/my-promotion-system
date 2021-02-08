@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'Admin registers a product category' do
   scenario 'and attributes cannot be blank' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+
     visit root_path
     click_on 'Categorias'
     click_on 'Registrar uma categoria'
@@ -15,6 +18,9 @@ feature 'Admin registers a product category' do
   end
 
   scenario 'and code must be unique' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+    
     Category.create!(name: 'Filmes', code: 'FILMES10')
 
     visit root_path

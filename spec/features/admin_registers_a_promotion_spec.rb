@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'Admin registers a promotion' do
   scenario 'from index page' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+
     visit root_path
     click_on 'Promoções'
 
@@ -10,6 +13,9 @@ feature 'Admin registers a promotion' do
   end
 
   scenario 'successfully' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+    
     visit root_path
     click_on 'Promoções'
     click_on 'Registrar uma promoção'

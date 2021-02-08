@@ -3,6 +3,9 @@ require 'rails_helper'
 feature 'Admin creates coupons' do
 
   scenario 'in a promotion' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                                   code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
                                   expiration_date: '22/12/2033')
@@ -21,6 +24,9 @@ feature 'Admin creates coupons' do
   end
 
   scenario 'do not view the button to generate coupons' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+    
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                                   code: 'NATAL10', discount_rate: 10, coupon_quantity: 2,
                                   expiration_date: '22/12/2033')

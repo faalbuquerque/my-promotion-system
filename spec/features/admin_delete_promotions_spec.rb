@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'Admin delete promotions' do
   scenario 'successfully' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
+    sign_in admin
+    
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL50', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033')
