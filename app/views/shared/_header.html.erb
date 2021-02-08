@@ -1,1 +1,11 @@
 <h1>Promotion System</h1>
+
+<p>
+  <% if admin_signed_in? %>
+    <%= current_admin.email %> | 
+    <%= link_to "Logout", destroy_admin_session_path, method: :delete %>
+  <% else %>
+    <%= link_to "Login", new_admin_session_path %>
+  <% end %>
+</p>
+<hr>

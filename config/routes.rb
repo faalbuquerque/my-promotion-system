@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'home#index'
+  devise_for :admins
   resources :categories
 
   resources :promotions do
@@ -10,5 +11,4 @@ Rails.application.routes.draw do
   resources :coupons, only: [] do
     post 'inactivate', on: :member
   end
-
 end

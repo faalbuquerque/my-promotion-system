@@ -1,4 +1,5 @@
 class PromotionsController < ApplicationController
+  before_action :authenticate_admin!
   before_action :find_promotion, except: %i[index new create]
 
   def index
