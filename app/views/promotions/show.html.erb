@@ -10,8 +10,11 @@
   <%= link_to 'Editar promoção', edit_promotion_path(@promotion) %> | 
   <%= link_to 'Apagar promoção', @promotion, method: :delete %>
 </p>
+
 <p>
-  <%= link_to 'Gerar cupons', creates_coupons_promotion_path, method: :post %>
+  <% unless @promotion.coupons.any? %>
+    <%= link_to 'Gerar cupons', creates_coupons_promotion_path, method: :post %>
+  <% end %>
 </p>
 <hr>
 

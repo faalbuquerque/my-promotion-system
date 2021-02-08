@@ -12,9 +12,4 @@ class Promotion < ApplicationRecord
       end
     end
   end
-
-  #def coupons_qtd?
-    #coupons.size > 0
-  #end
-
 end

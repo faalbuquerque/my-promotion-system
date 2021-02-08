@@ -35,6 +35,7 @@ class PromotionsController < ApplicationController
   end
 
   def creates_coupons
+    return redirect_to @promotion, notice: t('.burned') if @promotion.coupons.any?
     @promotion.create_coupons!
 
     redirect_to @promotion, notice: t('.success')

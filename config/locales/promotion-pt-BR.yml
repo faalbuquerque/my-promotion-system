@@ -2,4 +2,5 @@ pt-BR:
   promotions:
     creates_coupons:
       success: 'Cupons gerados com sucesso!'
+      burned: 'Cupons já gerados!'
 

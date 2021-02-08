@@ -4,8 +4,8 @@ feature 'Admin creates coupons' do
 
   scenario 'in a promotion' do
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
-                      code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+                                  code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+                                  expiration_date: '22/12/2033')
 
     visit root_path
     click_on 'Promoções'
@@ -20,6 +20,16 @@ feature 'Admin creates coupons' do
     expect(page).to_not have_content('NATAL10-0101')
   end
 
-  xscenario 'hide button if coupons creates' do
+  scenario 'do not view the button to generate coupons' do
+    promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+                                  code: 'NATAL10', discount_rate: 10, coupon_quantity: 2,
+                                  expiration_date: '22/12/2033')
+
+    #active_coupon = Coupon.create!(code: 'ABC', promotion: promotion, status: :active)
+    active_coupon = promotion.coupons.create!
+
+    visit promotion_path(promotion)
+
+    expect(page).to_not have_link 'Gerar cupons'
   end
 end
