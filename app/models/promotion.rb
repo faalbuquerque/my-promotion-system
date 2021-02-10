@@ -1,6 +1,7 @@
 class Promotion < ApplicationRecord
-  belongs_to :admin
   has_many :coupons, dependent: :destroy
+  has_one :promotion_approval
+  belongs_to :admin
 
   validates :name, :code, presence: true, uniqueness: true
   validates :discount_rate, :coupon_quantity, :expiration_date, presence: true
@@ -15,6 +16,10 @@ class Promotion < ApplicationRecord
   end
 
   def approved?
-    PromotionApproval.find_by(promotion: self.id)
+    promotion_approval
+  end
+
+  def approver
+    promotion_approval.admin
   end
 end

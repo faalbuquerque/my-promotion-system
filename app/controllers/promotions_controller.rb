@@ -43,7 +43,8 @@ class PromotionsController < ApplicationController
     redirect_to @promotion, notice: t('.success')
   end
 
-  def approver
+  def approve
+    promotion = Promotion.find(params[:id])
     PromotionApproval.create(promotion: promotion, admin: current_admin)
     redirect_to promotion
   end

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :promotions do
     member do 
       post 'creates_coupons'
-      post 'approver'
+      post 'approve'
     end
   end
 
