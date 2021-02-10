@@ -12,6 +12,7 @@ class PromotionsController < ApplicationController
 
   def create
     @promotion = Promotion.create(promotion_params)
+    @promotion.admin = current_admin
     return redirect_to @promotion if @promotion.save
 
     render :new

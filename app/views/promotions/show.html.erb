@@ -1,6 +1,7 @@
 <p><%= link_to  'Voltar', promotions_path %></p>
 
 <h3>Promoção: <%= @promotion.name %></h3>
+<p>Criada por: <%= @promotion.admin.email %></p>
 <p>Descrição: <%= @promotion.description %></p>
 <p>Código: <%= @promotion.code %></p>
 <p>Desconto: <%= number_to_percentage @promotion.discount_rate, precision: 2, separator: ',' %></p>

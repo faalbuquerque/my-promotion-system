@@ -31,7 +31,7 @@ feature 'Admin registers a valid promotion' do
 
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
 
     visit root_path
     click_on 'Promoções'
@@ -48,7 +48,7 @@ feature 'Admin registers a valid promotion' do
     
     Promotion.create!(name: 'Natal1', description: 'Promoção',
                       code: 'NATAL', discount_rate: 11, coupon_quantity: 101,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
 
     visit root_path
     click_on 'Promoções'

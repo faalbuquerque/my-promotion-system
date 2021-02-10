@@ -35,6 +35,7 @@ feature 'Admin registers a promotion' do
     expect(page).to have_content('CYBER15')
     expect(page).to have_content('22/12/2033')
     expect(page).to have_content('90')
+    expect(page).to have_content 'Criada por: test@test.com'
     expect(page).to have_link('Voltar')
   end
 end

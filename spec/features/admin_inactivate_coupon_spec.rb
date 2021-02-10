@@ -7,7 +7,7 @@ feature 'Admin inactivate coupons' do
 
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                                   code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                                  expiration_date: '22/12/2033')
+                                  expiration_date: '22/12/2033', admin: admin)
     coupon = Coupon.create!(code: 'AAA-11', promotion: promotion)
 
     visit root_path
@@ -28,7 +28,7 @@ feature 'Admin inactivate coupons' do
     
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                                   code: 'NATAL10', discount_rate: 10, coupon_quantity: 2,
-                                  expiration_date: '22/12/2033')
+                                  expiration_date: '22/12/2033', admin: admin)
     inactive_coupon = Coupon.create!(code: 'ABC0001', promotion: promotion, status: :inactive)
     active_coupon = Coupon.create!(code: 'ABC0002', promotion: promotion, status: :active)
 

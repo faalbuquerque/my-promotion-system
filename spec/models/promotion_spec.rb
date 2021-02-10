@@ -3,21 +3,28 @@ require 'rails_helper'
 describe Promotion do
   context 'validation' do
     it 'attributes cannot be blank' do
-      promotion = Promotion.new
-  
+      admin = Admin.create!(email: 'test@test.com', password: "password")
+
+      promotion = Promotion.new(name: '', description: '', code: '', 
+                                discount_rate: '', coupon_quantity: '',
+                                expiration_date: '', admin: admin)
+
       expect(promotion.valid?).to eq false
       expect(promotion.errors.count).to eq 5
     end
 
     it 'description is optional' do
+      admin = Admin.create!(email: 'test@test.com', password: "password")
       promotion = Promotion.new(name: 'Natal', description: '', code: 'NAT',
                                 coupon_quantity: 10, discount_rate: 10,
-                                expiration_date: '2021-10-10')
+                                expiration_date: '2021-10-10', admin: admin)
 
       expect(promotion.valid?).to eq true
     end
 
     it 'error messages are in portuguese' do
+      admin = Admin.create!(email: 'test@test.com', password: "password")
+      sign_in admin
       promotion = Promotion.new
 
       promotion.valid?
@@ -33,9 +40,10 @@ describe Promotion do
     end
   
     it 'code must be uniq' do
+      admin = Admin.create!(email: 'test@test.com', password: "password")
       Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                         code: 'NATAL10', discount_rate: 10,
-                        coupon_quantity: 100, expiration_date: '22/12/2033')
+                        coupon_quantity: 100, expiration_date: '22/12/2033', admin: admin)
       promotion = Promotion.new(code: 'NATAL10')
 
       promotion.valid?
@@ -46,9 +54,10 @@ describe Promotion do
 
   context '#create_coupons!' do
     it 'create coupons with a quantity' do
+      admin = Admin.create!(email: 'test@test.com', password: "password")
       promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                                     code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                                    expiration_date: '22/12/2033')
+                                    expiration_date: '22/12/2033', admin: admin)
 
       promotion.create_coupons!
 
@@ -60,9 +69,10 @@ describe Promotion do
       expect(codes).to_not include('NATAL10-0000')
     end
     it 'do not create repeated codes' do
+      admin = Admin.create!(email: 'test@test.com', password: "password")
       promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                                     code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                                    expiration_date: '22/12/2033')
+                                    expiration_date: '22/12/2033', admin: admin)
       promotion.coupons.create!(code: 'NATAL10-0030')
 
       expect { promotion.create_coupons! }.to raise_error(ActiveRecord::RecordInvalid)

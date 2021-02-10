@@ -7,10 +7,10 @@ feature 'Admin delete promotions' do
     
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL50', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
     Promotion.create!(name: 'Natal1', description: 'Promoção de Natal1',
                       code: 'NATAL501', discount_rate: 101, coupon_quantity: 1001,
-                      expiration_date: '22/12/2031')
+                      expiration_date: '22/12/2031', admin: admin)
 
     visit promotion_path(Promotion.last)
     click_on 'Apagar promoção'

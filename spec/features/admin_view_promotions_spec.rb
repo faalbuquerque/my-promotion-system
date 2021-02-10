@@ -7,11 +7,11 @@ feature 'Admin view promotions' do
 
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
     Promotion.create!(name: 'Cyber Monday', coupon_quantity: 100,
                       description: 'Promoção de Cyber Monday',
                       code: 'CYBER15', discount_rate: 15,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
 
     visit root_path
     click_on 'Promoções'
@@ -30,11 +30,11 @@ feature 'Admin view promotions' do
 
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
     Promotion.create!(name: 'Cyber Monday', coupon_quantity: 90,
                       description: 'Promoção de Cyber Monday',
                       code: 'CYBER15', discount_rate: 15,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
 
     visit root_path
     click_on 'Promoções'
@@ -64,7 +64,7 @@ feature 'Admin view promotions' do
 
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
 
     visit root_path
     click_on 'Promoções'
@@ -79,7 +79,7 @@ feature 'Admin view promotions' do
     
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
 
     visit root_path
     click_on 'Promoções'
@@ -90,18 +90,20 @@ feature 'Admin view promotions' do
   end
 
   scenario 'and must be signed in' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                                   code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                                  expiration_date: '22/12/2033')
+                                  expiration_date: '22/12/2033', admin: admin)
 
     visit promotion_path(promotion)
     expect(current_path).to eq new_admin_session_path
   end
 
   scenario 'failure, not signed in' do
+    admin = Admin.create!(email: 'test@test.com', password: "password")
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
 
     visit root_path
     click_on 'Promoções'

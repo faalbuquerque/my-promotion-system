@@ -8,7 +8,7 @@ feature 'Admin creates coupons' do
 
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                                   code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                                  expiration_date: '22/12/2033')
+                                  expiration_date: '22/12/2033', admin: admin )
 
     visit root_path
     click_on 'Promoções'
@@ -29,7 +29,7 @@ feature 'Admin creates coupons' do
     
     promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                                   code: 'NATAL10', discount_rate: 10, coupon_quantity: 2,
-                                  expiration_date: '22/12/2033')
+                                  expiration_date: '22/12/2033', admin: admin)
 
     #active_coupon = Coupon.create!(code: 'ABC', promotion: promotion, status: :active)
     active_coupon = promotion.coupons.create!

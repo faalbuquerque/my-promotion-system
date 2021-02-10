@@ -7,10 +7,10 @@ feature 'Admin edit promotions' do
 
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
     Promotion.first.update!(name: 'Natal 2034', description: 'Promoção de Natal 2034', 
                             coupon_quantity: 34, code: 'NATAL34', discount_rate: 34, 
-                            expiration_date: '22/12/2034')
+                            expiration_date: '22/12/2034', admin: admin)
 
     visit root_path
     click_on 'Promoções'
@@ -29,7 +29,7 @@ feature 'Admin edit promotions' do
 
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
   
     visit root_path
     click_on 'Promoções'
@@ -51,10 +51,10 @@ feature 'Admin edit promotions' do
     
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL50', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033', admin: admin)
     Promotion.create!(name: 'Natal2', description: 'Promoção de Natal',
                       code: 'NATAL59', discount_rate: 10, coupon_quantity: 100,
-                      expiration_date: '22/12/2033')
+                      expiration_date: '22/12/2033',admin: admin)
 
     visit edit_promotion_path(Promotion.last)
     fill_in 'Código', with: 'NATAL50'
