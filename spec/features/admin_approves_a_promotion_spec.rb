@@ -15,7 +15,7 @@ feature 'Admin approves a promotion' do
 
     promotion.reload
     expect(current_path).to eq promotion_path(promotion)
-    expect(promotion.approved?).to eq be_truthy
+    expect(promotion.approved?).to be_truthy
     expect(promotion.approver).to eq approval_admin
 
   end
