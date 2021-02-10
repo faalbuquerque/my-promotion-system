@@ -13,6 +13,12 @@
 </p>
 
 <p>
+  <% unless current_admin == @promotion.admin %>
+    <%= link_to 'Aprovar promoção', '#' %>
+  <% end %>
+</p>
+
+<p>
   <% unless @promotion.coupons.any? %>
     <%= link_to 'Gerar cupons', creates_coupons_promotion_path, method: :post %>
   <% end %>

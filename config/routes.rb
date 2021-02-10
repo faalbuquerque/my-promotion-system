@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :promotions do
-    post 'creates_coupons', on: :member
+    member do 
+      post 'creates_coupons'
+      post 'approver'
+    end
   end
 
   resources :coupons, only: [] do

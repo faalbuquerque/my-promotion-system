@@ -13,4 +13,8 @@ class Promotion < ApplicationRecord
       end
     end
   end
+
+  def approved?
+    PromotionApproval.find_by(promotion: self.id)
+  end
 end
