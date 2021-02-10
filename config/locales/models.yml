@@ -10,7 +10,13 @@ pt-BR:
       coupons:
         one: Cupom
         other: Cupons
+      admin:
+        one: Usuario
+        other: Usuarios
     attributes:
+      admin:
+        email: E-mail
+        password: Senha
       promotion:
         name: "Nome"
         code: "Código"

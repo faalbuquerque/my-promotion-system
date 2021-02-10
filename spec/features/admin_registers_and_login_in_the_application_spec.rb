@@ -7,8 +7,8 @@ feature 'Admin in the application' do
     click_on 'Login'
     click_on 'Sign up'
 
-    fill_in 'Email', with: 'test@test.com'
-    fill_in 'Password', with: 'password'
+    fill_in 'E-mail', with: 'test@test.com'
+    fill_in 'Senha', with: 'password'
     fill_in 'Password confirmation', with: 'password'
     click_on 'Sign up'
 
@@ -22,8 +22,8 @@ feature 'Admin in the application' do
     visit root_path
     click_on 'Login'
 
-    fill_in 'Email', with: 'test@test.com'
-    fill_in 'Password', with: 'password'
+    fill_in 'E-mail', with: 'test@test.com'
+    fill_in 'Senha', with: 'password'
     click_on 'Log in'
 
     expect(page).to have_content(admin.email)
@@ -36,8 +36,8 @@ feature 'Admin in the application' do
     visit root_path
     click_on 'Login'
 
-    fill_in 'Email', with: 'test@test.com'
-    fill_in 'Password', with: 'password'
+    fill_in 'E-mail', with: 'test@test.com'
+    fill_in 'Senha', with: 'password'
     click_on 'Log in'
     click_on 'Logout'
 
