@@ -2,7 +2,6 @@ require 'rails_helper'
 
 feature 'Admin view promotions' do
   scenario 'successfully' do
-
     admin = Admin.create!(email: 'test@test.com', password: "password")
     sign_in admin
 
@@ -90,8 +89,16 @@ feature 'Admin view promotions' do
     expect(current_path).to eq promotions_path
   end
 
-  scenario 'failure, not signed in' do
+  scenario 'and must be signed in' do
+    promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+                                  code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+                                  expiration_date: '22/12/2033')
 
+    visit promotion_path(promotion)
+    expect(current_path).to eq new_admin_session_path
+  end
+
+  scenario 'failure, not signed in' do
     Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
                       code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
                       expiration_date: '22/12/2033')

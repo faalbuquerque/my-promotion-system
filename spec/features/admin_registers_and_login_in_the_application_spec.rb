@@ -10,11 +10,10 @@ feature 'Admin in the application' do
     fill_in 'Email', with: 'test@test.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
-    click_on 'ign up'
+    click_on 'Sign up'
 
     expect(page).to have_content('test@test.com')
     expect(page).to have_content('Promoções')
-
   end
 
   scenario 'login successfully' do
