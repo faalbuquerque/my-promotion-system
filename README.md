@@ -8,4 +8,4 @@ Desenvolvimento de um sistema em Ruby on Rails como parte do treinamento da Camp
 - RSpec
 - I18n
 
-### [Link: Trello](https://trello.com/b/68Dthg1c/treinadev-atividades)
+### [Link: Trello](https://trello.com/b/qTTfYbGV/treinadev-atividades-5)
