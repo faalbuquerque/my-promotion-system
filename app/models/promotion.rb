@@ -15,6 +15,10 @@ class Promotion < ApplicationRecord
     end
   end
 
+  def approve!(approval_admin)
+    PromotionApproval.create(promotion: self, admin: approval_admin)
+  end
+
   def approved?
     promotion_approval
   end

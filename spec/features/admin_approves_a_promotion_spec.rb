@@ -17,6 +17,7 @@ feature 'Admin approves a promotion' do
     expect(current_path).to eq promotion_path(promotion)
     expect(promotion.approved?).to be_truthy
     expect(promotion.approver).to eq approval_admin
+    expect(page).to have_content 'Status: Aprovada!'
 
   end
 

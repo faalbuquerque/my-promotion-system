@@ -44,7 +44,7 @@ class PromotionsController < ApplicationController
   end
 
   def approve
-    PromotionApproval.create(promotion: find_promotion, admin: current_admin)
+    find_promotion.approve!(current_admin)
     redirect_to find_promotion
   end
 

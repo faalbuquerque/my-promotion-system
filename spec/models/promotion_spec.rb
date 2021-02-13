@@ -38,7 +38,7 @@ describe Promotion do
       expect(promotion.errors[:expiration_date]).to include('não pode ficar em'\
                                                             ' branco')
     end
-  
+
     it 'code must be uniq' do
       admin = Admin.create!(email: 'test@test.com', password: "password")
       Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
@@ -78,6 +78,36 @@ describe Promotion do
       expect { promotion.create_coupons! }.to raise_error(ActiveRecord::RecordInvalid)
 
       expect(promotion.coupons.reload.size).to eq(1)
+    end
+  end
+
+  context '#approve!' do
+    it 'should generate a PromotionApproval object' do
+      creator = Admin.create!(email: 'creator@test.com', password: "p@ssword1")
+      approval_admin = Admin.create!(email: 'approval@test.com', password: "passw0rd2")
+
+      promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+                                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+                                    expiration_date: '22/12/2033', admin: creator)
+
+      promotion.approve!(approval_admin)
+      promotion.reload
+
+      expect(promotion.approved?).to be_truthy
+      expect(promotion.approver).to eq approval_admin
+    end
+
+    it 'it should not approve if same admin ' do
+      creator = Admin.create!(email: 'creator@test.com', password: "p@ssword1")
+
+      promotion = Promotion.create!(name: 'Natal', description: 'Promoção de Natal',
+                                    code: 'NATAL10', discount_rate: 10, coupon_quantity: 100,
+                                    expiration_date: '22/12/2033', admin: creator)
+
+      promotion.approve!(creator)
+      promotion.reload
+
+      expect(promotion.approved?).to be_falsy
     end
   end
 end

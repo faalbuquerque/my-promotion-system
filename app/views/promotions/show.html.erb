@@ -13,6 +13,12 @@
 </p>
 
 <p>
+  <% if @promotion.approved? %>
+    <p><%= t :status %><p>
+  <% end %>
+</p>
+
+<p>
   <% unless current_admin == @promotion.admin %>
     <%= link_to 'Aprovar promoção', approve_promotion_path, method: :post %>
   <% end %>
