@@ -1,0 +1,18 @@
+<p><%= link_to  'Voltar', promotions_path %></p>
+
+<h1>Resultados da busca</h1>
+
+<% unless @result_set.any? %>
+  <p>Nenhum resultado encontrado!</p>
+<% end %>
+
+<% @result_set.each do |result| %>
+  <p><%= result.class %>:</p>
+
+  <% if result.is_a?(Promotion) %>
+    <p><%= result.name %></p>
+    <p><%= result.description %></p>
+  <% else %>
+    <p><%= result.code %></p>
+  <% end %>
+<% end %>

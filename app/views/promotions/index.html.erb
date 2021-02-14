@@ -2,8 +2,14 @@
 
 <h2><%= link_to 'Registrar uma promoção', new_promotion_path %></h2>
 
+<%= form_with url: search_path, method: :get do %>
+  <%= label_tag :q, 'Buscar' %>
+  <%= text_field_tag :q %>
+  <%= submit_tag 'Pesquisar' %>
+<% end %>
+
 <% if @promotions.empty? %> 
-  <p>Nenhuma promoção cadastrada</p>  
+  <p>Nenhuma promoção cadastrada</p>
 <% end %>
 
 <hr>
@@ -22,5 +28,3 @@
 
   <hr>
 <% end %>
-
- 

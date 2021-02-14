@@ -1,6 +1,6 @@
 class PromotionsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :find_promotion, except: %i[index new create]
+  before_action :find_promotion, except: %i[index new create search]
 
   def index
     @promotions = Promotion.all
@@ -50,6 +50,13 @@ class PromotionsController < ApplicationController
   def approve
     find_promotion.approve!(current_admin)
     redirect_to find_promotion
+  end
+
+  def search
+    @result_set = Promotion.where('name like ? OR description like ?', 
+                                  "%#{params[:q]}%",
+                                  "%#{params[:q]}%")
+    @result_set += (Coupon.where('code like ?', "%#{params[:q]}%"))
   end
 
   private
