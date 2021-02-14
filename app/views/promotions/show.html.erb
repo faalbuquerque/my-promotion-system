@@ -7,6 +7,16 @@
 <p>Desconto: <%= number_to_percentage @promotion.discount_rate, precision: 2, separator: ',' %></p>
 <p>Data de expiração: <%= @promotion.expiration_date.strftime('%d/%m/%Y') %></p>
 <p>Quantidade de cupons: <%= @promotion.coupon_quantity %></p>
+
+<p>
+  <% if @promotion.categories.any? %>
+    Categorias:
+    <% @promotion.categories.each do |category| %>
+      #<%= category.name %>
+    <% end %>
+  <% end %>
+</p>
+
 <p>
   <%= link_to 'Editar promoção', edit_promotion_path(@promotion) %> | 
   <%= link_to 'Apagar promoção', @promotion, method: :delete %>

@@ -8,6 +8,7 @@ class PromotionsController < ApplicationController
 
   def new
     @promotion = Promotion.new
+    @categories = Category.all.order(name: :asc)
   end
 
   def create
@@ -15,6 +16,7 @@ class PromotionsController < ApplicationController
     @promotion.admin = current_admin
     return redirect_to @promotion if @promotion.save
 
+    @categories = Category.all.order(name: :asc)
     render :new
   end
 
@@ -22,10 +24,12 @@ class PromotionsController < ApplicationController
   end
 
   def edit
+    @categories = Category.all.order(name: :asc)
   end
 
   def update
     return redirect_to @promotion if @promotion.update(promotion_params)
+    @categories = Category.all.order(name: :asc)
 
     render :edit
   end
@@ -52,7 +56,7 @@ class PromotionsController < ApplicationController
 
   def promotion_params
     params.require(:promotion).permit(:name, :description, :code, :discount_rate,
-                                      :coupon_quantity, :expiration_date)
+                                      :coupon_quantity, :expiration_date, category_ids: [] )
   end
 
   def find_promotion
