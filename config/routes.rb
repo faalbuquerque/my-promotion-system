@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   root 'home#index'
+
   devise_for :admins
+
   resources :categories
 
   resources :promotions do
@@ -17,6 +19,12 @@ Rails.application.routes.draw do
     member do
       post 'inactivate'
       post 'activate'
+    end
+  end
+
+  namespace 'api', defaults: { format: :json } do
+    namespace 'v1' do
+      resources :coupons, only: [:show]
     end
   end
 end
