@@ -30,6 +30,7 @@ feature 'Admin edit categories' do
     fill_in 'Código', with: ''
     click_on 'Atualizar categoria'
 
+    p page.html
     expect(page).to have_content('não pode ficar em branco', count: 2)
   end
 

@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get 'search', to: 'promotions#search'
 
   resources :coupons, only: [] do
-    post 'inactivate', on: :member
+    member do
+      post 'inactivate'
+      post 'activate'
+    end
   end
 end

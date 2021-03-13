@@ -9,12 +9,16 @@ class CategoriesController < ApplicationController
   def new
     @category = Category.new
   end
-  
+
   def create
     @category = Category.new(category_params)
     return redirect_to @category if @category.save
 
-    render :new
+    respond_to do |format|
+      format.js { render partial: 'message' }
+      format.html { render partial: 'result_message'}
+    end
+    #render :new
   end
 
   def show
@@ -26,7 +30,11 @@ class CategoriesController < ApplicationController
   def update
     return redirect_to @category if @category.update(category_params)
 
-    render :edit
+    respond_to do |format|
+      format.js { render partial: 'message' }
+      format.html { render partial: 'result_message'}
+    end
+    #render :edit
   end
 
   def destroy

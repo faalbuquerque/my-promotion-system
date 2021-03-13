@@ -1,13 +1,9 @@
 <p><%= link_to  'Voltar', promotions_path %></p>
 
-<% @promotion.errors.any? do %>
-  <p><%= t :promotion_error_message %>
-  <% @promotion.errors.full_messages.each do |message| %>
-  <p><%= message %></p>
-  <% end %>
-<% end %>
+<div id="mensagens">
+</div>
 
-<%= form_with model: @promotion, local: true do |form| %>
+<%= form_with model: @promotion, local: false do |form| %>
   <p>
     <%= form.label :name %>
     <%= form.text_field :name %>

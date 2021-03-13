@@ -12,12 +12,19 @@ class PromotionsController < ApplicationController
   end
 
   def create
+
     @promotion = Promotion.create(promotion_params)
     @promotion.admin = current_admin
+    
     return redirect_to @promotion if @promotion.save
 
-    @categories = Category.all.order(name: :asc)
-    render :new
+    respond_to do |format|
+      format.js { render partial: 'message' }
+      format.html { render partial: 'result_message'}
+    end
+
+    # @categories = Category.all.order(name: :asc)
+    # render :new
   end
 
   def show
@@ -29,9 +36,14 @@ class PromotionsController < ApplicationController
 
   def update
     return redirect_to @promotion if @promotion.update(promotion_params)
-    @categories = Category.all.order(name: :asc)
 
-    render :edit
+    respond_to do |format|
+      format.js { render partial: 'message' }
+      format.html { render partial: 'result_message'}
+    end
+
+    #@categories = Category.all.order(name: :asc)
+    #render :edit
   end
 
   def destroy
